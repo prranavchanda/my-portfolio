@@ -355,6 +355,13 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
+/* Styling for Certificate Badges */
+.cert-badge {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem auto; /* Center the image and add space below */
+}
 
 .edu-item, .cert-item {
     background-color: var(--bg-dark);
