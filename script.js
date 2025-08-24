@@ -1,5 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Smooth scrolling for navigation links
+
+    // --- Smart Navigation Bar Logic ---
+    let lastScrollY = window.scrollY;
+    const mainNav = document.getElementById('main-nav');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+            // Scrolling down, hide the nav bar.
+            mainNav.classList.add('hidden');
+        } else {
+            // Scrolling up or at the top of the page, show the nav bar.
+            mainNav.classList.remove('hidden');
+        }
+        lastScrollY = window.scrollY;
+    });
+
+    // --- Smooth Scrolling for Navigation Links ---
     document.querySelectorAll('#main-nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -8,10 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Get the height of the sticky nav bar to offset the scroll position
-                const navHeight = document.getElementById('main-nav').offsetHeight;
-                
-                // Calculate the correct scroll position
+                const navHeight = mainNav.offsetHeight;
                 const targetPosition = targetElement.offsetTop - navHeight;
 
                 window.scrollTo({
@@ -22,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Intersection Observer for scroll-based animations
+    // --- Intersection Observer for scroll-based animations ---
     const observerOptions = {
         root: null,
         rootMargin: "0px",
@@ -63,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
         observer2.observe(section);
     });
 
-    // Parallax effect for project cards
+    // --- Parallax effect for project cards ---
     const projectCards = document.querySelectorAll('.project-card');
 
     projectCards.forEach(card => {
